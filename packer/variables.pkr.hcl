@@ -22,6 +22,10 @@ variable "oke_package_name" {
   type = string
 }
 
+variable "k8s_version" {
+  type = string
+}
+
 variable "image_name" {
   type    = string
   default = "oke-ubuntu-worker-node-{{timestamp}}"

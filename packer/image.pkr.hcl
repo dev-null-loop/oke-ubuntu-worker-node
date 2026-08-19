@@ -12,6 +12,9 @@ source "oracle-oci" "oke-ubuntu" {
   compartment_ocid                                    = var.compartment_ocid
   base_image_ocid                                     = var.base_image_ocid
   image_name                                          = var.image_name
+  tags                                                = {
+    k8s_version = var.k8s_version
+  }
   shape                                               = var.shape
   subnet_ocid                                         = var.subnet_ocid
   ssh_username                                        = var.ssh_username
