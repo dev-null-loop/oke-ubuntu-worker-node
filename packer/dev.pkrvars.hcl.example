@@ -1,0 +1,13 @@
+availability_domain = "RiYU:EU-FRANKFURT-1-AD-1"
+compartment_ocid    = "ocid1.compartment.oc1..replace"
+subnet_ocid         = "ocid1.subnet.oc1..replace"
+base_image_ocid     = "ocid1.image.oc1.eu-frankfurt-1.<official-ubuntu-24-04-image-ocid>"
+apt_source_url      = "https://objectstorage.us-sanjose-1.oraclecloud.com/p/<PAR>/n/odx-oke/b/okn-repositories-private/o/prod/ubuntu-noble/kubernetes-1.36"
+oke_package_name    = "oci-oke-node-all-1.36.1"
+image_name          = "oke-ubuntu-worker-node-noble-1-36"
+shape               = "VM.Standard.E5.Flex"
+shape_ocpus         = 1
+shape_memory_in_gbs = 12
+ssh_username        = "ubuntu"
+image_launch_mode   = "NATIVE"
+instance_options_are_legacy_imds_endpoints_disabled = true

@@ -1,0 +1,11 @@
+#cloud-config
+write_files:
+  - path: /etc/oke/oke-apiserver
+    permissions: "0644"
+    content: __API_SERVER_HOST__
+  - encoding: b64
+    path: /etc/kubernetes/ca.crt
+    permissions: "0644"
+    content: __CLUSTER_CA_CERT_B64__
+runcmd:
+  - oke bootstrap --ca __CLUSTER_CA_CERT_B64__ --apiserver-host __API_SERVER_HOST__
