@@ -1,32 +1,27 @@
+# Required environment values
 availability_domain                                 = "RiYU:EU-FRANKFURT-1-AD-1"
 compartment_ocid                                    = "ocid1.compartment.oc1..replace"
 subnet_ocid                                         = "ocid1.subnet.oc1..replace"
 base_image_ocid                                     = "ocid1.image.oc1.eu-frankfurt-1.<official-ubuntu-24-04-image-ocid>"
-apt_source_url                                      = "https://objectstorage.us-sanjose-1.oraclecloud.com/p/<PAR>/n/odx-oke/b/okn-repositories-private/o/prod/ubuntu-noble/kubernetes-1.36"
-oke_package_name                                    = "oci-oke-node-all-1.36.1"
+oke_repo_par                                        = "<PAR>"
+
+# Required release value
 k8s_version                                         = "1.36.1"
-image_name                                          = "ubuntu-24.04-2026.08.19.1-OKE-1.36.1"
-shape                                               = "VM.Standard.E5.Flex"
-shape_ocpus                                         = 1
-shape_memory_in_gbs                                 = 12
-ssh_username                                        = "ubuntu"
-image_launch_mode                                   = "NATIVE"
-instance_options_are_legacy_imds_endpoints_disabled = true
-optimization_profile                                = "fast-start"
-install_helper_packages                             = true
-helper_packages                                     = ["jq", "curl", "crictl"]
-enable_image_prepull                                = true
-prepull_failure_fatal                               = false
-enable_boot_cri_runtime                             = true
-enable_default_oke_prepull                          = true
-ocir_region                                         = "eu-frankfurt-1"
-oke_system_image_namespace                          = "<system-namespace>"
-oke_aux_image_namespace                             = "<aux-namespace>"
-oke_vcn_native_ip_cni_tag                           = "<cni-tag>"
-oke_cloud_provider_oci_tag                          = "<cloud-provider-tag>"
-oke_proxymux_cli_tag                                = "<proxymux-tag>"
-# oke_kube_proxy_image_ref                          = "eu-frankfurt-1.ocir.io/<namespace>/oke-public-kube-proxy@sha256:<digest>"
-# oke_pause_image_ref                               = "eu-frankfurt-1.ocir.io/<namespace>/oke-public-pause@sha256:<digest>"
-prepull_images                                      = [
-  "public.ecr.aws/z2c7x8q5/bitnami/kubectl@sha256:78726c39c86a468752790cd392839cef1282095400bb3cdf3619ab5dae9c8d2c"
+
+# Version-specific fast-start image set. Refresh this from a fresh-node pull
+# observation whenever you change k8s_version or the underlying OKE system
+# image set.
+oke_default_prepull_images                          = [
+  "eu-frankfurt-1.ocir.io/<system-namespace>/oke-public-vcn-native-ip-cni-plugin:<cni-tag>",
+  "eu-frankfurt-1.ocir.io/<system-namespace>/oke-public-cloud-provider-oci:<cloud-provider-tag>",
+  "eu-frankfurt-1.ocir.io/<aux-namespace>/oke-public-proxymux-cli:<proxymux-tag>",
+  # Add kube-proxy here when OKE exposes it only as a digest-pinned ref.
+  # "eu-frankfurt-1.ocir.io/<namespace>/oke-public-kube-proxy@sha256:<digest>",
+  # Add pause here only if you need an explicit pinned ref.
+  # "eu-frankfurt-1.ocir.io/<namespace>/oke-public-pause@sha256:<digest>",
 ]
+
+# Optional workload- or workaround-specific extra images.
+# additional_prepull_images                         = [
+#   "public.ecr.aws/z2c7x8q5/bitnami/kubectl@sha256:78726c39c86a468752790cd392839cef1282095400bb3cdf3619ab5dae9c8d2c"
+# ]
