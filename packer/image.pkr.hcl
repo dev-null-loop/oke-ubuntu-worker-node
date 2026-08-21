@@ -54,6 +54,11 @@ source "oracle-oci" "oke-ubuntu" {
 build {
   sources = ["source.oracle-oci.oke-ubuntu"]
 
+  provisioner "file" {
+    source      = "../scripts/lib"
+    destination = "/tmp"
+  }
+
   provisioner "shell" {
     inline = [
       "cloud-init status --wait"

@@ -12,12 +12,12 @@ source "${script_dir}/lib/prepull.sh"
 readonly expected_os_id="ubuntu"
 readonly debian_frontend="noninteractive"
 readonly oke_apt_source_path="/etc/apt/sources.list.d/oke-node-client.sources"
-readonly helper_packages=(
+readonly default_helper_packages=(
   jq
   curl
   crictl
 )
-helper_packages_csv="$(IFS=,; echo "${helper_packages[*]}")"
+helper_packages_csv="$(IFS=,; echo "${default_helper_packages[*]}")"
 prepull_images_csv="${PREPULL_IMAGES:-}"
 
 load_os_release() {
