@@ -25,7 +25,7 @@ source "oracle-oci" "oke-ubuntu" {
   availability_domain = var.availability_domain
   base_image_ocid     = var.base_image_ocid
   compartment_ocid    = var.compartment_ocid
-  image_name          = "ubuntu-${local.ubuntu_release_tag}-{{timestamp}}-OKE-${var.k8s_version}-${var.optimization_profile}"
+  image_name          = "ubuntu-${var.ubuntu_release}-${formatdate("YYYY.MM.DD", timestamp())}-OKE-${var.k8s_version}-${var.optimization_profile}"
   shape               = var.shape
   ssh_username        = var.ssh_username
   subnet_ocid         = var.subnet_ocid

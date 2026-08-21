@@ -41,7 +41,7 @@ packer build -var-file=dev.pkrvars.hcl .
 - bootstrap timing monitor enabled
 - apt source URL is derived from `ubuntu_release`, `k8s_version`, and `oke_repo_par`
 - OKE package name is derived as `oci-oke-node-all-<k8s_version>`
-- image name is `ubuntu-<ubuntu_release>-{{timestamp}}-OKE-<k8s_version>-<optimization_profile>`
+- image name is `ubuntu-<ubuntu_release>-YYYY.MM.DD-OKE-<k8s_version>-<optimization_profile>`
 
 ## Fast Start
 
